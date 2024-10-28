@@ -54,6 +54,10 @@ jobs:
         with:
           terraform_version: ${{ env.Terraform_Version }}
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12' 
+
       - name: Terraform Plan
         run: |
           cd infra
