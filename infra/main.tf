@@ -14,18 +14,9 @@ module "hello_lambda_function" {
   layers = [
     "arn:aws:lambda:${data.aws_region.current.name}:017000801446:layer:AWSLambdaPowertoolsPythonV2:76"
   ]
+  environment_variables = {
+    POWERTOOLS_SERVICE_NAME = "HelloLambda"
+  }
+  
 }
 
-
-data "aws_iam_policy_document" "data_sharing_lambda_dynamodb_permissions" {
-  statement {
-    effect = "Allow"
-    actions = [
-      "dynamodb:GetItem",
-      "dynamodb:BatchGetItem",
-      "dynamodb:Scan",
-      "dynamodb:Query",
-      "dynamodb:ConditionCheckItem"
-    ]
-    resources = ["*"]
-}
