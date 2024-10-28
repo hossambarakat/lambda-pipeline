@@ -71,6 +71,14 @@ jobs:
           path: infra/tfplan
           if-no-files-found: error
           retention-days: 5
+      
+      - name: Upload Lambda Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-lambda
+          path: builds/*.zip
+          if-no-files-found: error
+          retention-days: 5
 
   terraform-apply:
     environment: 'dev'
@@ -104,8 +112,16 @@ jobs:
           name: tfplan
           path: infra/tfplan
 
+      - name: Download Lambda Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hello-lambda
+          path: builds
+
       - name: Terraform Apply
         run: |
+          ls
           cd infra
+          ls
           terraform init
           terraform apply -auto-approve tfplan
