@@ -97,10 +97,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: tfplan
-          path: infra/tfplan
+          path: ./infra/tfplan
 
       - name: Terraform Apply
         run: |
           cd infra
+          pwd
           terraform init
           terraform apply -auto-approve tfplan
