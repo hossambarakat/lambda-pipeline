@@ -76,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-lambda
-          path: builds/*.zip
+          path: infra/builds/*.zip
           if-no-files-found: error
           retention-days: 5
 
@@ -116,7 +116,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hello-lambda
-          path: builds
+          path: infra/builds
 
       - name: Terraform Apply
         run: |
