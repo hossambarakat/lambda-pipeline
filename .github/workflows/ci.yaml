@@ -120,7 +120,6 @@ jobs:
 
       - name: Terraform Apply
         run: |
-          ls
           cd infra
           ls
           terraform init
