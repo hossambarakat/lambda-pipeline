@@ -79,6 +79,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ env.Terraform_Version }}
@@ -97,11 +102,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: tfplan
-          path: ./infra/tfplan
+          path: infra/tfplan
 
       - name: Terraform Apply
         run: |
           cd infra
-          pwd
           terraform init
           terraform apply -auto-approve tfplan
