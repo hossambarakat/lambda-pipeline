@@ -113,11 +113,11 @@ jobs:
           name: tfplan
           path: infra
 
-      # - name: Download Lambda Artifact
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: hello-lambda
-      #     path: infra/builds
+      - name: Download Lambda Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hello-lambda
+          path: infra/builds
 
       - name: Terraform Apply
         run: |
